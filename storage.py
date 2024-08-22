@@ -2,7 +2,7 @@
 
 #файл для добавления
 def save_task(task_description):
-    with open('textovick.txt', "w") as file:
+    with open('textovick.txt', "a") as file:
         file.write("задача сохранена: " + task_description + "\n")
 
 
@@ -10,7 +10,11 @@ def save_task(task_description):
 def read_task():
     try:
         with open('textovick.txt', "r") as file:
-            task_description = file.read()
-            print("Задача:", task_description)
+            lines = file.readlines()
+            number = 1
+
+            for line in lines:
+                print(f"{number}. {line.strip()}")
+                number += 1
     except FileNotFoundError:
         print("Файл не найден")
