@@ -1,9 +1,25 @@
-# task_description - строка, содержащая текст задачи
-# статус False для невыполненной задачи
 
-def add_task(task_list, task_description):
-    task_list.append({"описание": task_description, "статус": False})
+#файл для добавления
+def save_task(task_description):
+    with open('textovick.txt', "a") as file:
+        file.write("задача сохранена: " + task_description + "\n")
     print(f"Задача '{task_description}' успешно добавлена!")
+
+
+#файл для чтения
+def read_task():
+    try:
+        with open('textovick.txt', "r") as file:
+            lines = file.readlines()
+            number = 1
+
+            for line in lines:
+                print(f"{number}. {line.strip()}")
+                number += 1
+    except FileNotFoundError:
+        print("Файл не найден")
+
+
 
 def remove_task(number):
     index = number - 1
